@@ -53,7 +53,7 @@ function create_mu_project() {
 // Hook into the 'init' action
 add_action( 'init', 'create_mu_project', 0 );
 
-add_image_size('mu_project_default_thumbnail_size',319,180,true);
+add_image_size('mu_project_default_thumbnail_size',360,267,true);
 
 /* Flush Rewrite Rules */
 
