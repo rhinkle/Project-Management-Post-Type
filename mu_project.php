@@ -7,19 +7,21 @@
  * Author URI:
  */
 
-if(!defined('PRODUCT_TEMPLATE_URL') ) {
+if (! defined('PRODUCT_TEMPLATE_URL') ) {
     define('PRODUCT_TEMPLATE_URL', plugin_dir_path(__FILE__) . 'templates/');
 }
 
 
 //Check if this class name is taken
-if(!class_exists('Mu_Products')) {
+if (! class_exists('Mu_Products') ) {
 
     class Mu_Products{
 
 		var meta_template_url;
 
     	function __construct() {
+
+    		// Declare template url.
     		$this->meta_template_url = PRODUCT_TEMPLATE_URL;
 
 			// Single Hooks and Filters
@@ -138,42 +140,45 @@ if(!class_exists('Mu_Products')) {
 		 * @return HTML  (MIXED)  html content.
 		 */
 		function mu_list_projects($atts){
-			 extract( shortcode_atts( array(
-			      'layout' => 'grid',
-			      'count' => '-1',
-			      'order' => 'DESC',
-			      'orderby' => 'post_date'
-		     ), $atts ) );
+			extract( shortcode_atts( array(
+				'layout' => 'grid',
+				'count' => '-1',
+				'order' => 'DESC',
+				'orderby' => 'post_date'
+			), $atts ) );
 
-		     $args = array(
+			$args = array(
 				'posts_per_page'   => $count,
 				'orderby'          => $orderby,
 				'order'            => $order,
 				'post_type'        => 'mu_project',
 				'post_status'      => 'publish'
-				);
-		     $posts_array = get_posts( $args );
-		     ob_start();
-		     ?>
-		     <div class="wp-list_projects <?php echo $layout; ?>">
-			     <div class="inner_wrap">
-				     <ul>
-						 <?php
-						 	global $post;
-						 	$count = 1;
-						 	foreach($posts_array as $post){
-							setup_postdata($post);
-								$this->file_loader('loop-project');
-							$count++;
-						 	}
-						 	wp_reset_postdata();
-						 ?>
-				     </ul>
-			     </div>
-		     </div>
-		     <?php
-		     $html = ob_get_contents();
-		     ob_end_clean();
-		     return $html;
+			);
+			$posts_array = get_posts( $args );
+			ob_start();
+				?>
+				<div class="wp-list_projects <?php echo $layout; ?>">
+					<div class="inner_wrap">
+						<ul>
+						<?php
+							global $post;
+							$count = 1;
+							foreach($posts_array as $post){
+								setup_postdata($post);
+									$this->file_loader('loop-project');
+								$count++;
+							}
+							wp_reset_postdata();
+							?>
+						</ul>
+					</div>
+				</div>
+				<?php
+			$html = ob_get_contents();
+			ob_end_clean();
+			return $html;
 		}
+	}
+	new Mu_Products();
+}
 ?>
