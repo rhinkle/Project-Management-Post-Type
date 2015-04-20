@@ -15,10 +15,17 @@ if (! defined('PRODUCT_TEMPLATE_URL') ) {
 //Check if this class name is taken
 if (! class_exists('Mu_Products') ) {
 
-    class Mu_Products{
-
+	class Mu_Products{
+    	// Class Variables
 		var meta_template_url;
 
+		/**
+		 * initiates the class.
+		 *
+		 *
+		 *
+		 * @return
+		 */
     	function __construct() {
 
     		// Declare template url.
