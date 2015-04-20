@@ -1,13 +1,12 @@
-<?php 
+<?php
 /**
  * Plugin Name: Project Management Plugin
- * Plugin URI: http://
- * Description: A Custom Project mangamnt plugin
+ * Description: A Custom Project management plugin
  * Version: 1.0
  * Author: Ryan Hinkle
- * Author URI: 
+ * Author URI:
  */
- 
+
 // Register Custom Post Type
 function create_mu_project() {
 
@@ -83,7 +82,7 @@ function mu_list_projects($atts){
 	      'order' => 'DESC',
 	      'orderby' => 'post_date'
      ), $atts ) );
-     
+
      $args = array(
 		'posts_per_page'   => $count,
 		'orderby'          => $orderby,
@@ -97,22 +96,22 @@ function mu_list_projects($atts){
      <div class="wp-list_projects <?php echo $layout; ?>">
 	     <div class="inner_wrap">
 		     <ul>
-				 <?php 
+				 <?php
 				 	global $post;
 				 	$count = 1;
-				 	foreach($posts_array as $post){ 
+				 	foreach($posts_array as $post){
 					 setup_postdata($post); ?>
 					 <li class="project_item item_num-<?php echo $count; ?>">
 					 	 <?php do_action('before_image', get_the_ID()); ?>
-					 	 
+
 						 <?php echo get_the_post_thumbnail(get_the_ID(),apply_filters('mu_project_thumbnail_size','mu_project_default_thumbnail_size')); ?>
-						 
+
 						 <div class="caption">
 						 	<div class="text"><?php the_title(); ?><?php do_action( 'caption_after_title', get_the_ID()); ?></div>
 						 </div>
 						 <?php do_action( 'after_caption', get_the_ID()); ?>
 					 </li>
-					 <?php 
+					 <?php
 					 $count++;
 				 	}
 				 	wp_reset_postdata();
@@ -127,5 +126,5 @@ function mu_list_projects($atts){
 }
 
 add_shortcode('list projects','mu_list_projects');
- 
+
 ?>
