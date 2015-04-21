@@ -26,7 +26,7 @@ if (! class_exists('Mu_Products') ) {
 		 *
 		 * @return
 		 */
-    	function __construct() {
+		function __construct() {
 
     		// Declare template url.
     		$this->meta_template_url = PRODUCT_TEMPLATE_URL;
