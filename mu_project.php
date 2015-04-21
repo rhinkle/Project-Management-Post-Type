@@ -17,7 +17,7 @@ if (! class_exists('Mu_Products') ) {
 
 	class Mu_Products{
     	// Class Variables
-		var meta_template_url;
+		var $meta_template_url;
 
 		/**
 		 * initiates the class.
@@ -47,7 +47,6 @@ if (! class_exists('Mu_Products') ) {
 			// Register Project.
 			add_action( 'init', array( $this, 'register_mu_project'));
 
-
 			// Setup URLS on plugin activation.
 			register_activation_hook( __FILE__, array($this, 'clear_permlinks') );
 
@@ -58,7 +57,7 @@ if (! class_exists('Mu_Products') ) {
 			add_action( 'after_switch_theme', array($this, 'clear_permlinks'));
 
 			// Registering shortcode.
-			add_shortcode('list projects','mu_list_projects');
+			add_shortcode('list projects', 'mu_list_projects');
 
 			// Add custom image size support.
 			add_image_size( 'project_thumbnail', 360, 267, true);
@@ -92,7 +91,7 @@ if (! class_exists('Mu_Products') ) {
 				'label'               => 'mu_project',
 				'description'         => 'Project Management ',
 				'labels'              => $labels,
-				'supports'            => array( 'title', 'thumbnail', ),
+				'supports'            => array( 'title', 'thumbnail', 'editor'),
 				'taxonomies'          => array(),
 				'hierarchical'        => false,
 				'public'              => true,
